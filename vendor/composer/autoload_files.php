@@ -7,4 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     '04c6c5c2f7095ccf6c481d3e53e1776f' => $vendorDir . '/mustangostang/spyc/Spyc.php',
+    '00e4dcb805d78d6c4804946cd784bb92' => $baseDir . '/src/NfeLoteRPS/Helpers/Functions.php',
 );

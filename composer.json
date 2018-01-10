@@ -17,6 +17,9 @@
         "mustangostang/spyc": "0.5.*"
     },
     "autoload": {
+        "files": [
+            "src/NfeLoteRPS/Helpers/Functions.php"
+        ],        
         "psr-4": {
             "NfeLoteRPS\\": "src/NfeLoteRPS"
         }

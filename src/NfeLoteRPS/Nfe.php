@@ -13,7 +13,7 @@ class Nfe extends NfeFactory
 
     public function createRemessa()
     {
-        return $this->loadYml('detail.yml');
+        return $this->loadYml('header.yml');
     }
 
     public function createRetorno()
