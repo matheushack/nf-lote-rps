@@ -1,0 +1,4 @@
+detail:
+  pos: [1, 1]
+  type: 'detail'
+  default: '1'

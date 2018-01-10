@@ -1,0 +1,4 @@
+trailer:
+  pos: [1, 1]
+  type: 'trailer'
+  default: '1'

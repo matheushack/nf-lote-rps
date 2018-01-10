@@ -1,0 +1,4 @@
+example:
+  pos: [1, 1]
+  type: 'teste'
+  default: '1'
