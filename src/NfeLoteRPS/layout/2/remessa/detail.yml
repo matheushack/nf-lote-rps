@@ -1,4 +1,4 @@
-trailer:
+detail:
   pos: [1, 1]
-  type: 'trailer'
+  type: 'character'
   default: '1'

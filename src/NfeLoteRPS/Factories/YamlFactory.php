@@ -6,35 +6,19 @@ use NfeLoteRPS\Constants\Layout;
 use NfeLoteRPS\Constants\FieldType;
 use NfeLoteRPS\Constants\LayoutType;
 use NfeLoteRPS\Constants\FieldParameter;
+use NfeLoteRPS\Exceptions\LayoutException;
 
 class YamlFactory
 {
     private $pathYml;
 
-    private $type;
+    protected $type;
 
-    private $layout;
+    protected $layout;
 
-    private $fields = [];
+    protected $fields = [];
 
-    function __construct($options = array())
-    {
-        $this->setOptions($options);
-    }
-
-    public function loadYml($file)
-    {
-        $filename = "{$this->pathYml}/{$this->layout}/{$this->type}/$file";
-
-        if (!file_exists($filename))
-            throw new \DomainException("Layout {$file} de {$this->type} não encontrado para versão {$this->layout}");
-
-        $this->fields = spyc_load_file($filename);
-
-        return $this->validateLayout();
-    }    
-
-    private function setOptions(array $newOptions)
+    public function setOptions(array $newOptions)
     {
         $default = [
             'pathYml' => dirname(__FILE__).'/../layout',
@@ -52,12 +36,24 @@ class YamlFactory
                     $this->$option = $value;
             }
         }
+    }    
+
+    public function loadYml($file)
+    {
+        $filename = "{$this->pathYml}/{$this->layout}/{$this->type}/$file";
+
+        if (!file_exists($filename))
+            throw new LayoutException("Layout {$file} of type {$this->type} not found for version {$this->layout}");
+
+        $this->fields = spyc_load_file($filename);
+
+        return $this->validateLayout();
     }
 
     private function validateLayout()
     {
         if(empty($this->fields))
-            throw new \DomainException("No field found");
+            throw new LayoutException("No field found");
         
         $this->validateCollision();
         $this->validateType();
@@ -81,10 +77,10 @@ class YamlFactory
                 $current_pos_end = $current_field['pos'][1];
 
                 if($current_pos_start > $current_pos_end)
-                    throw new \DomainException("In the {$current_name} field the starting position ({$current_pos_start}) must be less than or equal to the final position ({$current_pos_end})");
+                    throw new LayoutException("In the {$current_name} field the starting position ({$current_pos_start}) must be less than or equal to the final position ({$current_pos_end})");
 
                 if(($pos_start >= $current_pos_start && $pos_start <= $current_pos_end) || ($pos_end <= $current_pos_end && $pos_end >= $current_pos_start))
-                    throw new \DomainException("The {$name} field collides with the field {$current_name}");
+                    throw new LayoutException("The {$name} field collides with the field {$current_name}");
             }
         }
     }
@@ -93,7 +89,7 @@ class YamlFactory
     {
         foreach($this->fields as $field => $options){
             if(!in_array($options['type'], FieldType::arrayAllowed()))
-                throw new \DomainException("In the {$field} field the type is invalid");
+                throw new LayoutException("In the {$field} field the type is invalid");
         }      
     }
 
@@ -110,22 +106,24 @@ class YamlFactory
                 break;
                 case FieldType::NUMBER: 
                     if(!validateNumeric($options['default']))
-                        throw new \DomainException("The default value of the {$field} field must be a number");
+                        throw new LayoutException("The default value of the {$field} field must be a number");
                 break;
                 case FieldType::DATE: 
                     if(!validateDate($options['default'], 'Ymd'))
-                        throw new \DomainException("The default value of the {$field} field must be filled in the date format (YYYYMMDD)");
+                        throw new LayoutException("The default value of the {$field} field must be filled in the date format (YYYYMMDD)");
                 break;
                 case FieldType::CHARACTER: 
                     if(!validateCharacter($options['default']))
-                        throw new \DomainException("The default {$field} field value must be a character");
+                        throw new LayoutException("The default {$field} field value must be a character");
                 break;
             }
 
-            $amountCharacters = $options['pos'][1] - $options['pos'][0];
+            $amountCharacters = ($options['pos'][1] - $options['pos'][0]) + 1;
 
-            if(strlen($options['default']) > $amountCharacters)
-                throw new \DomainException("The default value of the {$field} field is greater than the number of characters allowed");
+            if($options['pos'][0] == $options['pos'][1] && strlen($options['default']) > 1)
+                throw new LayoutException("The default value of the {$field} field is greater than the number of characters allowed");
+            else if($options['pos'][0] != $options['pos'][1] && strlen($options['default']) > $amountCharacters)
+                throw new LayoutException("The default value of the {$field} field is greater than the number of characters allowed");
         }      
     }
 
@@ -134,7 +132,7 @@ class YamlFactory
         foreach($this->fields as $field => $options){
             foreach($options as $option => $value){
                 if(!in_array($option, FieldParameter::arrayAllowed()))
-                    throw new \DomainException("There are invalid parameters in {$field} field");
+                    throw new LayoutException("There are invalid parameters in {$field} field");
             }
         }
     }    

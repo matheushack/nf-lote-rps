@@ -1,4 +1,4 @@
-detail:
+trailler:
   pos: [1, 1]
-  type: 'detail'
+  type: 'text'
   default: '1'

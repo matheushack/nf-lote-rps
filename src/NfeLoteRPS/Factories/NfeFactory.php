@@ -2,6 +2,12 @@
 
 namespace NfeLoteRPS\Factories;
 
-class NfeFactory extends YamlFactory
+use NfeLoteRPS\Requests\LayoutRequest;
+
+class NfeFactory
 {
+    public function make(LayoutRequest $layoutRequest)
+    {
+        return $layoutRequest;
+    }
 }
