@@ -1,8 +1,11 @@
 <?php
 
+use Carbon\Carbon;
+use MatheusHack\NfeLoteRPS\Constants\FieldType;
+
 function validateDate($date, $format = 'Y-m-d H:i:s')
 {
-    $d = DateTime::createFromFormat($format, $date);
+    $d = Carbon::createFromFormat($format, $date);
     return $d && $d->format($format) == $date;
 }  
 
@@ -30,6 +33,23 @@ function treatText($text, $remove = null)
         $result = str_replace(str_split($remove), '', $result);
 
     return $result;
+}
+
+function convertFieldToType($value, $type, $amount = 1)
+{
+    $lengthValue = strlen($value);
+    $diffLength = $amount - $lengthValue;
+
+    switch($type){
+        case FieldType::TEXT: 
+            return str_pad($value, $amount);
+        break;
+        case FieldType::NUMBER: 
+            return str_pad($value, $amount, '0', STR_PAD_LEFT);
+        break;
+    }    
+
+    return $value;
 }
 
 function removeAccents($string)

@@ -77,7 +77,7 @@ class LayoutRequest
         return [];
     }
 
-    public function getDatDetail()
+    public function getDataDetail()
     {
         if(isset($this->data['detail']))
             return $this->data['detail'];
