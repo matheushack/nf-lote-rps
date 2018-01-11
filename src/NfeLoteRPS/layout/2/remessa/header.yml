@@ -2,30 +2,24 @@ tipo_registro:
   pos: [1, 1]
   type: 'number'
   default: 1
-  required: true
 
 versao:
   pos: [2,4]
   type: 'number'
   default: '002'
-  required: true
 
 inscricao_prestador:
   pos: [5,12]
   type: 'number'
-  required: true
 
 inicio_periodo_transmissao_arquivo:
   pos: [13,20]
   type: 'date'
-  required: true
 
 fim_periodo_transmissao_arquivo:
   pos: [21,28]
   type: 'date'
-  required: true
 
 endline:
   pos: [29,30]
   type: 'endline'
-  required: true

@@ -23,45 +23,24 @@ class HeaderFactory
         }
 
         foreach($layout as $field => $parameters){
+            $amount = ($parameters['pos'][1] - $parameters['pos'][0]) + 1;
+            
             if(!isset($newData[$field]) && data_get($parameters, 'default')){
                 $header[$field] = $parameters['default'];
                 continue;                
             }
 
-            if(data_get($parameters, 'required') && boolval(data_get($parameters, 'required')) === true && ((!isset($newData[$field]) || empty($newData[$field]))) && $parameters['type'] != FieldType::ENDLINE)
-                throw new HeaderException("The {$field} field is mandatory and does not have a default value");
-
-            switch($parameters['type']){
-                default:
-                case FieldType::TEXT: 
-                    $header[$field] = treatText($newData[$field]);
-                break;
-                case FieldType::NUMBER: 
-                    if(!validateNumeric($newData[$field]))
-                        throw new HeaderException("The default value of the {$field} field must be a number");
-                        
-                    $header[$field] = $newData[$field];
-                break;
-                case FieldType::DATE: 
-                    if(!validateDate($newData[$field], 'Ymd'))
-                        throw new HeaderException("The default value of the {$field} field must be filled in the date format (YYYYMMDD)");
-
-                    $header[$field] = $newData[$field];
-                break;
-                case FieldType::CHARACTER: 
-                    if(!validateCharacter($data[$field]))
-                        throw new HeaderException("The default {$field} field value must be a character");
-
-                    $header[$field] = treatText($newData[$field]);
-                break;
-                case FieldType::ENDLINE:
-                    $header[$field] = chr(13).chr(10);
-                    continue;
-                break;
+            if(((!isset($newData[$field]) || empty($newData[$field]))) && $parameters['type'] != FieldType::ENDLINE){
+                $header[$field] = convertFieldToType('', $parameters['type'], $amount);
+                continue;
             }
 
-            $amount = ($parameters['pos'][1] - $parameters['pos'][0]) + 1;
-            $header[$field] = convertFieldToType($header[$field], $parameters['type'], $amount);
+            if($parameters['type'] == FieldType::ENDLINE){
+                $header[$field] = validateFields($parameters, '', $field, $amount);
+                continue;
+            }
+
+            $header[$field] = validateFields($parameters, $newData[$field], $field, $amount);
         }
 
         return $header;

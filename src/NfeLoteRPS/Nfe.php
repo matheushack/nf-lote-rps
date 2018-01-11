@@ -30,7 +30,17 @@ class Nfe extends YamlFactory
             ->setTrailler($layoutTrailler);
 
         $nfeFactory = new NfeFactory;
-        return $nfeFactory->make($layoutRequest);
+        $remessa = $nfeFactory->make($layoutRequest);
+
+        $file = implode($remessa->header, '');
+
+        foreach($remessa->detail as $detail){
+            $file .= implode($detail, '');
+        }
+
+        $file .= implode($remessa->trailler, '');
+
+        return $file;
     }
 
     public function createRetorno(array $data)

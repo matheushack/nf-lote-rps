@@ -21,6 +21,7 @@ class NfeFactory
         $this->makeHeader($layoutRequest);
         $this->makeDetail($layoutRequest);
         $this->makeTrailler($layoutRequest);
+        
         return $this->rps;
     }
 

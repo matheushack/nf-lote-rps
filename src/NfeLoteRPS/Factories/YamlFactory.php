@@ -76,6 +76,9 @@ class YamlFactory
                 $current_pos_start = $current_field['pos'][0];
                 $current_pos_end = $current_field['pos'][1];
 
+                if(!is_numeric($current_pos_start) || !is_numeric($current_pos_end))
+                    continue;
+
                 if($current_pos_start > $current_pos_end)
                     throw new LayoutException("In the {$current_name} field the starting position ({$current_pos_start}) must be less than or equal to the final position ({$current_pos_end})");
 

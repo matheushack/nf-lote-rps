@@ -7,7 +7,7 @@ class FieldParameter
     const POS = 'pos';
     const TYPE = 'type';
     const DEFAULT = 'default';
-    const REQUIRED = 'required';
+    const MAXIMUM = 'maximum';
 
     public static function arrayAllowed()
     {
@@ -15,7 +15,7 @@ class FieldParameter
             self::POS,
             self::TYPE,
             self::DEFAULT,
-            self::REQUIRED,
+            self::MAXIMUM,
         ];
     }
 

@@ -1,4 +1,164 @@
-detail:
-  pos: [1, 10]
+tipo_registro:
+  pos: [1, 1]
+  type: 'number'
+  default: 6
+
+tipo_rps:
+  pos: [2, 6]
   type: 'text'
-  default: '1'
+  default: 'RPS'
+
+serie_rps:
+  pos: [7, 11]
+  type: 'text'
+
+numero_rps:
+  pos: [12, 23]
+  type: 'number'
+
+data_emissa_rps:
+  pos: [24,31]
+  type: 'date'
+
+situacao_rps:
+  pos: [32,32]
+  type: 'character'
+  default: 'T'
+
+valor_servicos:
+  pos: [33,47]
+  type: 'money'
+
+valor_deducoes:
+  pos: [48,62]
+  type: 'money'  
+
+codigo_servico_prestado:
+  pos: [63,67]
+  type: 'number'
+
+aliquota:
+  pos: [68,71]
+  type: 'number'
+
+iss_retido:
+  pos: [72,72]
+  type: 'number'
+
+indicador_documento_tomador:
+  pos: [73,73]
+  type: 'number'
+  default: 3
+
+documento_tomador:
+  pos: [74,87]
+  type: 'number'
+
+inscricao_municipal_tomador:
+  pos: [88,95]
+  type: 'number'
+
+inscricao_estadual_tomador:
+  pos: [96,107]
+  type: 'number'
+
+razao_social_tomador:
+  pos: [108,182]
+  type: 'text'
+
+tipo_endereco_tomador:
+  pos: [183,185]
+  type: 'text'
+
+endereco_tomador:
+  pos: [186,235]
+  type: 'text'
+
+numero_endereco_tomador:
+  pos: [236,245]
+  type: 'text'
+
+complemento_endereco_tomador:
+  pos: [246,275]
+  type: 'text'
+
+bairro_tomador: 
+  pos: [276,305]
+  type: 'text'
+
+cidade_tomador:
+  pos: [306,355]
+  type: 'text'
+
+uf_tomador:
+  pos: [356,357]
+  type: 'text'
+
+cep_tomador:
+  pos: [358,365]
+  type: 'number'
+
+email_tomador:
+  pos: [366,440]
+  type: 'text'
+
+retencao_pis:
+  pos: [441,455]
+  type: 'number'
+
+retencao_cofins:
+  pos: [456,470]
+  type: 'number'
+
+retencao_inss:
+  pos: [471,485]
+  type: 'number'
+
+retencao_ir:
+  pos: [486,500]
+  type: 'number'
+
+retencao_cssl:
+  pos: [501,515]
+  type: 'number'
+
+valor_carga_tributaria:
+  pos: [516,530]
+  type: 'number'
+
+porcentagem_carga_tributaria:
+  pos: [531,535]
+  type: 'number'
+
+fonte_carga_tributaria:
+  pos: [536,545]
+  type: 'text'
+
+cei:
+  pos: [546,557]
+  type: 'number'
+
+matricula_obra:
+  pos: [558,569]
+  type: 'number'
+
+municipio_prestacao:
+  pos: [570,576]
+  type: 'number'
+
+numero_encapsulamento:
+  pos: [577,586]
+  type: 'number'
+
+campo_reservado:
+  pos: [587,786]
+  type: 'white'
+
+descriminacao_servico:
+  pos: [787, 1000]
+  type: 'notFill'
+  maximum: 214
+
+endline:
+  pos: [1001, 1003]
+  type: 'endline'

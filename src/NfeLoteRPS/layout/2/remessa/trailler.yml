@@ -1,4 +1,20 @@
-trailler:
+tipo_registro:
   pos: [1, 1]
-  type: 'text'
-  default: '1'
+  type: 'number'
+  default: 9
+
+numero_linhas:
+  pos: [2, 8]
+  type: 'number'
+
+valor_total_servicos:
+  pos: [9,23]
+  type: 'number'
+
+valor_total_deducoes:
+  pos: [24,38]
+  type: 'number'
+
+endline:
+  pos: [39,40]
+  type: 'endline'  
