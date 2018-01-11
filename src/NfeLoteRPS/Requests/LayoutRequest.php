@@ -1,6 +1,6 @@
 <?php
 
-namespace NfeLoteRPS\Requests;
+namespace MatheusHack\NfeLoteRPS\Requests;
 
 class LayoutRequest
 {
@@ -11,6 +11,8 @@ class LayoutRequest
     private $trailler = [];
 
     private $type = 'remessa';
+
+    private $data = [];
 
     public function setHeader($header)
     {
@@ -55,5 +57,40 @@ class LayoutRequest
     {
         return $this->type;
     }
+
+    public function setData($data)
+    {
+        $this->data = $data;
+        return $this;
+    }
+
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    public function getDataHeader()
+    {
+        if(isset($this->data['header']))
+            return $this->data['header'];
+        
+        return [];
+    }
+
+    public function getDatDetail()
+    {
+        if(isset($this->data['detail']))
+            return $this->data['detail'];
+        
+        return [];
+    }
+
+    public function getDataTrailler()
+    {
+        if(isset($this->data['trailler']))
+            return $this->data['trailler'];
+        
+        return [];
+    }        
 
 }

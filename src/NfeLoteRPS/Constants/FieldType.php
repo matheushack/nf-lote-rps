@@ -1,6 +1,6 @@
 <?php
 
-namespace NfeLoteRPS\Constants;
+namespace MatheusHack\NfeLoteRPS\Constants;
 
 class FieldType
 {

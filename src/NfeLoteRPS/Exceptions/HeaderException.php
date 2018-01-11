@@ -1,7 +1,7 @@
 <?php
 namespace MatheusHack\NfeLoteRPS\Exceptions;
 
-class LayoutException extends \Exception
+class HeaderException extends \Exception
 {
     public function __construct($message = null)
     {

@@ -1,12 +1,12 @@
 <?php
 
-namespace NfeLoteRPS\Factories;
+namespace MatheusHack\NfeLoteRPS\Factories;
 
-use NfeLoteRPS\Constants\Layout;
-use NfeLoteRPS\Constants\FieldType;
-use NfeLoteRPS\Constants\LayoutType;
-use NfeLoteRPS\Constants\FieldParameter;
-use NfeLoteRPS\Exceptions\LayoutException;
+use MatheusHack\NfeLoteRPS\Constants\Layout;
+use MatheusHack\NfeLoteRPS\Constants\FieldType;
+use MatheusHack\NfeLoteRPS\Constants\LayoutType;
+use MatheusHack\NfeLoteRPS\Constants\FieldParameter;
+use MatheusHack\NfeLoteRPS\Exceptions\LayoutException;
 
 class YamlFactory
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace NfeLoteRPS;
+namespace MatheusHack\NfeLoteRPS;
 
-use NfeLoteRPS\Factories\NfeFactory;
-use NfeLoteRPS\Factories\YamlFactory;
-use NfeLoteRPS\Constants\LayoutType;
-use NfeLoteRPS\Requests\LayoutRequest;
+use MatheusHack\NfeLoteRPS\Factories\NfeFactory;
+use MatheusHack\NfeLoteRPS\Factories\YamlFactory;
+use MatheusHack\NfeLoteRPS\Constants\LayoutType;
+use MatheusHack\NfeLoteRPS\Requests\LayoutRequest;
 
 class Nfe extends YamlFactory
 {
@@ -14,7 +14,7 @@ class Nfe extends YamlFactory
         $this->setOptions($options);
     }
 
-    public function createRemessa(array $dados)
+    public function createRemessa(array $data)
     {
         $this->type = LayoutType::REMESSA;
 
@@ -24,6 +24,7 @@ class Nfe extends YamlFactory
 
         $layoutRequest = new LayoutRequest;
         $layoutRequest->setType($this->type)
+            ->setData($data)
             ->setHeader($layoutHeader)
             ->setDetail($layoutDetail)
             ->setTrailler($layoutTrailler);
@@ -32,7 +33,7 @@ class Nfe extends YamlFactory
         return $nfeFactory->make($layoutRequest);
     }
 
-    public function createRetorno(array $dados)
+    public function createRetorno(array $data)
     {
         $this->type = LayoutType::RETORNO;
 
@@ -42,6 +43,7 @@ class Nfe extends YamlFactory
 
         $layoutRequest = new LayoutRequest;
         $layoutRequest->setType($this->type)
+            ->setData($data)
             ->setHeader($layoutHeader)
             ->setDetail($layoutDetail)
             ->setTrailler($layoutTrailler);
