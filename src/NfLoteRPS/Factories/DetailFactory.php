@@ -1,49 +1,49 @@
 <?php
-namespace MatheusHack\NfeLoteRPS\Factories;
+namespace MatheusHack\NfLoteRPS\Factories;
 
-use MatheusHack\NfeLoteRPS\Constants\FieldType;
-use MatheusHack\NfeLoteRPS\Requests\LayoutRequest;
-use MatheusHack\NfeLoteRPS\Exceptions\DetailException;
+use MatheusHack\NfLoteRPS\Constants\FieldType;
+use MatheusHack\NfLoteRPS\Requests\LayoutRequest;
+use MatheusHack\NfLoteRPS\Exceptions\DetailException;
 
 class DetailFactory
 {
-
     public function make(LayoutRequest $layoutRequest)
     {
         $detail = [];
         $newData = [];
-        $layout = $layoutRequest->getDetail();
-        $data = $layoutRequest->getDataDetail();
+        $layout = $layoutRequest->getLayoutDetail();
+        $data[] = $layoutRequest->getDataDetail();
+
 
         foreach($data as $line => $register){
-            foreach($register as $field => $value){
-                if(!array_key_exists($field, $layout))
-                    continue;
-
-                $newData[$line][$field] = $data[$line][$field];
+            foreach($layout as $fieldLayout => $optionsLayout){
+                if(array_key_exists($fieldLayout, $register))
+                    $newData[$line][$fieldLayout] = $data[$line][$fieldLayout];
+                else
+                    $newData[$line][$fieldLayout] = '';
             }
         }
 
         foreach($newData as $line => $register){
-            foreach($layout as $field => $parameters){
-                $amount = ($parameters['pos'][1] - $parameters['pos'][0]) + 1;
+            foreach($register as $field => $value){
+                $amount = ($layout[$field]['pos'][1] - $layout[$field]['pos'][0]) + 1;
 
-                if(!isset($newData[$line][$field]) && data_get($parameters, 'default')){
-                    $detail[$line][$field] = $parameters['default'];
+                if(empty($value) && data_get($layout[$field], 'default')){
+                    $detail[$line][$field] = $layout[$field]['default'];
                     continue;                
                 }              
 
-                if(((!isset($newData[$line][$field]) || empty($newData[$line][$field]))) && $parameters['type'] != FieldType::ENDLINE){
-                     $detail[$line][$field] = convertFieldToType('', $parameters['type'], $amount);
+                if(empty($value) && $layout[$field]['type'] != FieldType::ENDLINE){
+                    $detail[$line][$field] = convertFieldToType('', $layout[$field]['type'], $amount);
                     continue;
                 }
 
-                if($parameters['type'] == FieldType::ENDLINE){
-                    $detail[$line][$field] = validateFields($parameters, '', $field, $amount);
+                if($layout[$field]['type'] == FieldType::ENDLINE){
+                    $detail[$line][$field] = validateFields($layout[$field], '', $field, $amount);
                     continue;
                 }                
 
-                $detail[$line][$field] = validateFields($parameters, $newData[$line][$field], $field, $amount);
+                $detail[$line][$field] = validateFields($layout[$field], $value, $field, $amount);
             }
         }
 

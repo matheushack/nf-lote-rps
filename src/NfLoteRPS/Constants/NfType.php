@@ -1,6 +1,6 @@
 <?php
 
-namespace MatheusHack\NfeLoteRPS\Constants;
+namespace MatheusHack\NfLoteRPS\Constants;
 
 class NfType
 {

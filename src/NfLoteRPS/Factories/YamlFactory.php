@@ -1,55 +1,30 @@
 <?php
 
-namespace MatheusHack\NfeLoteRPS\Factories;
+namespace MatheusHack\NfLoteRPS\Factories;
 
-use MatheusHack\NfeLoteRPS\Constants\Layout;
-use MatheusHack\NfeLoteRPS\Constants\NfType;
-use MatheusHack\NfeLoteRPS\Constants\FieldType;
-use MatheusHack\NfeLoteRPS\Constants\LayoutType;
-use MatheusHack\NfeLoteRPS\Constants\FieldParameter;
-use MatheusHack\NfeLoteRPS\Exceptions\LayoutException;
+use MatheusHack\NfLoteRPS\Entities\Config;
+use MatheusHack\NfLoteRPS\Constants\Layout;
+use MatheusHack\NfLoteRPS\Constants\NfType;
+use MatheusHack\NfLoteRPS\Constants\FieldType;
+use MatheusHack\NfLoteRPS\Constants\LayoutType;
+use MatheusHack\NfLoteRPS\Constants\FieldParameter;
+use MatheusHack\NfLoteRPS\Exceptions\LayoutException;
 
 class YamlFactory
 {
-    private $pathYml;
+    protected $options;
 
-    protected $type;
-
-    protected $typeNf;
-
-    protected $layout;
-
-    protected $fields = [];
-
-    public function setOptions(array $newOptions)
+    public function setOptions(Config $config)
     {
-        $default = [
-            'pathYml' => dirname(__FILE__).'/../layout',
-            'type' => LayoutType::REMESSA,
-            'layout' => Layout::REMESSA,
-            'typeNf' => NfType::NFS,
-        ];
-
-        $options = array_merge($default, $newOptions);
-
-        foreach($options as $option => $value){
-            if(array_key_exists($option,$default)){
-                if($option == 'type' && in_array($value, [LayoutType::REMESSA, LayoutType::RETORNO]))
-                    $this->$option = $value;
-                else if($option == 'typeNf' && in_array($value, [NfType::NFS, NfType::NFTS]))
-                    $this->$option = $value;
-                else if($option != 'type')
-                    $this->$option = $value;
-            }
-        }
-    }    
+        $this->options = $config;
+    }
 
     public function loadYml($file)
     {
-        $filename = "{$this->pathYml}/v{$this->layout}/{$this->typeNf}/{$this->type}/$file";
+        $filename = "{$this->options->pathYml}/v{$this->options->layout}/{$this->options->typeNf}/{$this->options->type}/$file";
 
         if (!file_exists($filename))
-            throw new LayoutException("Layout {$file} of type {$this->type} not found for version {$this->layout}");
+            throw new LayoutException("Layout {$file} of type {$this->options->type} not found for version {$this->options->layout}");
 
         $this->fields = spyc_load_file($filename);
 

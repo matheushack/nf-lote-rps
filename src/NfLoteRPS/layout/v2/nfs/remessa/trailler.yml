@@ -6,15 +6,19 @@ tipo_registro:
 numero_linhas:
   pos: [2, 8]
   type: 'number'
+  default: '0'
 
 valor_total_servicos:
   pos: [9,23]
   type: 'number'
+  default: '0'
 
 valor_total_deducoes:
   pos: [24,38]
   type: 'number'
+  default: '0'
 
 endline:
   pos: [39,40]
   type: 'endline'  
+  default: ''

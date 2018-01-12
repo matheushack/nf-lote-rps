@@ -1,11 +1,17 @@
 <?php
 
 use Carbon\Carbon;
-use MatheusHack\NfeLoteRPS\Constants\FieldType;
-use MatheusHack\NfeLoteRPS\Exceptions\ValidateException;
+use MatheusHack\NfLoteRPS\Constants\FieldType;
+use MatheusHack\NfLoteRPS\Exceptions\ValidateException;
 
 function validateDate($date, $format = 'Y-m-d H:i:s')
 {
+    if(!validateNumeric($date))
+        return false;
+
+    if(strlen($date) < 6)
+        return true;
+        
     $d = Carbon::createFromFormat($format, $date);
     return $d && $d->format($format) == $date;
 }  

@@ -1,9 +1,9 @@
 <?php
-namespace MatheusHack\NfeLoteRPS\Factories;
+namespace MatheusHack\NfLoteRPS\Factories;
 
-use MatheusHack\NfeLoteRPS\Constants\FieldType;
-use MatheusHack\NfeLoteRPS\Requests\LayoutRequest;
-use MatheusHack\NfeLoteRPS\Exceptions\HeaderException;
+use MatheusHack\NfLoteRPS\Constants\FieldType;
+use MatheusHack\NfLoteRPS\Requests\LayoutRequest;
+use MatheusHack\NfLoteRPS\Exceptions\HeaderException;
 
 class HeaderFactory
 {
@@ -12,7 +12,7 @@ class HeaderFactory
     {
         $header = [];
         $newData = [];
-        $layout = $layoutRequest->getHeader();
+        $layout = $layoutRequest->getLayoutHeader();
         $data = $layoutRequest->getDataHeader();
 
         foreach($data as $field => $value){
@@ -25,12 +25,12 @@ class HeaderFactory
         foreach($layout as $field => $parameters){
             $amount = ($parameters['pos'][1] - $parameters['pos'][0]) + 1;
             
-            if(!isset($newData[$field]) && data_get($parameters, 'default')){
+            if(empty($newData[$field]) && data_get($parameters, 'default')){
                 $header[$field] = $parameters['default'];
                 continue;                
-            }
+            }              
 
-            if(((!isset($newData[$field]) || empty($newData[$field]))) && $parameters['type'] != FieldType::ENDLINE){
+            if(empty($newData[$field]) && $parameters['type'] != FieldType::ENDLINE){
                 $header[$field] = convertFieldToType('', $parameters['type'], $amount);
                 continue;
             }
@@ -38,7 +38,7 @@ class HeaderFactory
             if($parameters['type'] == FieldType::ENDLINE){
                 $header[$field] = validateFields($parameters, '', $field, $amount);
                 continue;
-            }
+            }  
 
             $header[$field] = validateFields($parameters, $newData[$field], $field, $amount);
         }

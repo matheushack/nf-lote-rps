@@ -1,5 +1,5 @@
 <?php
-namespace MatheusHack\NfeLoteRPS\Exceptions;
+namespace MatheusHack\NfLoteRPS\Exceptions;
 
 class LayoutException extends \Exception
 {

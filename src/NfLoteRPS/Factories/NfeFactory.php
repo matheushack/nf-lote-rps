@@ -1,13 +1,13 @@
 <?php
-namespace MatheusHack\NfeLoteRPS\Factories;
+namespace MatheusHack\NfLoteRPS\Factories;
 
 use StdClass;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Config;
-use MatheusHack\NfeLoteRPS\Requests\LayoutRequest;
-use MatheusHack\NfeLoteRPS\Factories\HeaderFactory;
-use MatheusHack\NfeLoteRPS\Factories\DetailFactory;
-use MatheusHack\NfeLoteRPS\Factories\TraillerFactory;
+use MatheusHack\NfLoteRPS\Requests\LayoutRequest;
+use MatheusHack\NfLoteRPS\Factories\HeaderFactory;
+use MatheusHack\NfLoteRPS\Factories\DetailFactory;
+use MatheusHack\NfLoteRPS\Factories\TraillerFactory;
 
 class NfeFactory
 {
@@ -26,6 +26,8 @@ class NfeFactory
         $this->makeHeader();
         $this->makeDetail();
         $this->makeTrailler();
+
+        // dd($this->rps);
 
         return $this->save();
     }
@@ -51,7 +53,7 @@ class NfeFactory
     private function save()
     {
         $timestamp = Carbon::now()->timestamp;
-        $file = sys_get_temp_dir()."/#{$timestamp}-{$this->layoutRequest->getTypeNf()}-{$this->layoutRequest->getType()}.txt";
+        $file = "{$this->layoutRequest->getPathSaveFile()}/#{$timestamp}-{$this->layoutRequest->getTypeNf()}-{$this->layoutRequest->getType()}.txt";
         $content = implode($this->rps->header, '');
 
         foreach($this->rps->detail as $detail){
@@ -59,6 +61,8 @@ class NfeFactory
         }
 
         $content .= implode($this->rps->trailler, '');
+
+        return $content;
 
         if(!file_put_contents($file, $content, FILE_TEXT))
             throw new \Exception("Problem generating file");

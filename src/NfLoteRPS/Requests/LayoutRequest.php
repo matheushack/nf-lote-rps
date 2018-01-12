@@ -1,107 +1,95 @@
 <?php
+namespace MatheusHack\NfLoteRPS\Requests;
 
-namespace MatheusHack\NfeLoteRPS\Requests;
+use MatheusHack\NfLoteRPS\Entities\Config;
+use MatheusHack\NfLoteRPS\Entities\DataFile;
+use MatheusHack\NfLoteRPS\Factories\YamlFactory;
 
-class LayoutRequest
+class LayoutRequest extends YamlFactory
 {
-    private $header = [];
+    private $layoutHeader = [];
 
-    private $detail = [];
+    private $layoutDetail = [];
 
-    private $trailler = [];
+    private $layoutTrailler = [];
 
-    private $type = 'remessa';
+    private $dataFile;
 
-    private $data = [];
-
-    public function setHeader($header)
+    public function getLayoutHeader()
     {
-        $this->header = $header;
-        return $this;
+        return $this->layoutHeader;
     }
 
-    public function getHeader()
+    public function getLayoutDetail()
     {
-        return $this->header;
+        return $this->layoutDetail;
     }
 
-    public function setDetail($detail)
+    public function getLayoutTrailler()
     {
-        $this->detail = $detail;
-        return $this;
-    }
-
-    public function getDetail()
-    {
-        return $this->detail;
-    }
-
-    public function setTrailler($trailler)
-    {
-        $this->trailler = $trailler;
-        return $this;
-    }
-
-    public function getTrailler()
-    {
-        return $this->trailler;
-    }        
-
-    public function setType($type)
-    {
-        $this->type = $type;
-        return $this;
-    }
-
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    public function setTypeNf($typeNf)
-    {
-        $this->typeNf = $typeNf;
-        return $this;
-    }
-
-    public function getTypeNf()
-    {
-        return $this->typeNf;
-    }    
-
-    public function setData($data)
-    {
-        $this->data = $data;
-        return $this;
-    }
-
-    public function getData()
-    {
-        return $this->data;
+        return $this->layoutTrailler;
     }
 
     public function getDataHeader()
     {
-        if(isset($this->data['header']))
-            return $this->data['header'];
-        
-        return [];
+        return $this->dataFile->header->toArray();
     }
 
     public function getDataDetail()
     {
-        if(isset($this->data['detail']))
-            return $this->data['detail'];
-        
-        return [];
+        return $this->dataFile->detail->toArray();
     }
 
     public function getDataTrailler()
     {
-        if(isset($this->data['trailler']))
-            return $this->data['trailler'];
-        
-        return [];
+        return $this->dataFile->trailler->toArray();
     }        
+
+    public function getPathSaveFile()
+    {
+        return $this->options->pathSaveFile;
+    }
+
+    public function getType()
+    {
+        return $this->options->type;
+    }
+
+    public function getTypeNf()
+    {
+        return $this->options->typeNf;
+    }
+
+    public function setConfigYml(Config $config)
+    {
+        parent::setOptions($config);
+        $this->setLayoutHeader();
+        $this->setLayoutDetail();
+        $this->setLayoutTrailler();
+    }
+
+    public function setDataFile(DataFile $dataFile)
+    {
+        $this->dataFile = $dataFile;
+        return $this;
+    }
+
+    public function setLayoutHeader()
+    {
+        $this->layoutHeader = $this->loadYml('header.yml');
+        return $this;
+    }
+
+    public function setLayoutDetail()
+    {
+        $this->layoutDetail = $this->loadYml('detail.yml');
+        return $this;
+    }    
+
+    public function setLayoutTrailler()
+    {
+        $this->layoutTrailler = $this->loadYml('trailler.yml');
+        return $this;
+    }
 
 }
