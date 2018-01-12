@@ -3,6 +3,7 @@
 namespace MatheusHack\NfeLoteRPS\Factories;
 
 use MatheusHack\NfeLoteRPS\Constants\Layout;
+use MatheusHack\NfeLoteRPS\Constants\NfType;
 use MatheusHack\NfeLoteRPS\Constants\FieldType;
 use MatheusHack\NfeLoteRPS\Constants\LayoutType;
 use MatheusHack\NfeLoteRPS\Constants\FieldParameter;
@@ -14,6 +15,8 @@ class YamlFactory
 
     protected $type;
 
+    protected $typeNf;
+
     protected $layout;
 
     protected $fields = [];
@@ -24,6 +27,7 @@ class YamlFactory
             'pathYml' => dirname(__FILE__).'/../layout',
             'type' => LayoutType::REMESSA,
             'layout' => Layout::REMESSA,
+            'typeNf' => NfType::NFS,
         ];
 
         $options = array_merge($default, $newOptions);
@@ -31,6 +35,8 @@ class YamlFactory
         foreach($options as $option => $value){
             if(array_key_exists($option,$default)){
                 if($option == 'type' && in_array($value, [LayoutType::REMESSA, LayoutType::RETORNO]))
+                    $this->$option = $value;
+                else if($option == 'typeNf' && in_array($value, [NfType::NFS, NfType::NFTS]))
                     $this->$option = $value;
                 else if($option != 'type')
                     $this->$option = $value;
@@ -40,7 +46,7 @@ class YamlFactory
 
     public function loadYml($file)
     {
-        $filename = "{$this->pathYml}/{$this->layout}/{$this->type}/$file";
+        $filename = "{$this->pathYml}/v{$this->layout}/{$this->typeNf}/{$this->type}/$file";
 
         if (!file_exists($filename))
             throw new LayoutException("Layout {$file} of type {$this->type} not found for version {$this->layout}");

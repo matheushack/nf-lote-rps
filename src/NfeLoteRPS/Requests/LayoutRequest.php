@@ -58,6 +58,17 @@ class LayoutRequest
         return $this->type;
     }
 
+    public function setTypeNf($typeNf)
+    {
+        $this->typeNf = $typeNf;
+        return $this;
+    }
+
+    public function getTypeNf()
+    {
+        return $this->typeNf;
+    }    
+
     public function setData($data)
     {
         $this->data = $data;

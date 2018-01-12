@@ -2,6 +2,7 @@
 
 namespace MatheusHack\NfeLoteRPS;
 
+use MatheusHack\NfeLoteRPS\Constants\NfType;
 use MatheusHack\NfeLoteRPS\Factories\NfeFactory;
 use MatheusHack\NfeLoteRPS\Factories\YamlFactory;
 use MatheusHack\NfeLoteRPS\Constants\LayoutType;
@@ -14,8 +15,9 @@ class Nfe extends YamlFactory
         $this->setOptions($options);
     }
 
-    public function createRemessa(array $data)
+    public function remessaNFs(array $data)
     {
+        $this->typeNf = NfType::NFS;
         $this->type = LayoutType::REMESSA;
 
         $layoutHeader = $this->loadYml('header.yml');
@@ -24,27 +26,19 @@ class Nfe extends YamlFactory
 
         $layoutRequest = new LayoutRequest;
         $layoutRequest->setType($this->type)
+            ->setTypeNf($this->typeNf)
             ->setData($data)
             ->setHeader($layoutHeader)
             ->setDetail($layoutDetail)
             ->setTrailler($layoutTrailler);
 
-        $nfeFactory = new NfeFactory;
-        $remessa = $nfeFactory->make($layoutRequest);
-
-        $file = implode($remessa->header, '');
-
-        foreach($remessa->detail as $detail){
-            $file .= implode($detail, '');
-        }
-
-        $file .= implode($remessa->trailler, '');
-
-        return $file;
+        $nfeFactory = new NfeFactory($layoutRequest);
+        return $nfeFactory->make();
     }
 
-    public function createRetorno(array $data)
+    public function retornoNFs(array $data)
     {
+        $this->typeNf = NfType::NFS;
         $this->type = LayoutType::RETORNO;
 
         $layoutHeader = $this->loadYml('header.yml');
@@ -53,12 +47,13 @@ class Nfe extends YamlFactory
 
         $layoutRequest = new LayoutRequest;
         $layoutRequest->setType($this->type)
+            ->setTypeNf($this->typeNf)        
             ->setData($data)
             ->setHeader($layoutHeader)
             ->setDetail($layoutDetail)
             ->setTrailler($layoutTrailler);
 
-        $nfeFactory = new NfeFactory;
-        return $nfeFactory->make($layoutRequest);     
+        $nfeFactory = new NfeFactory($layoutRequest);
+        return $nfeFactory->make();
     }
 }
