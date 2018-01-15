@@ -16,12 +16,12 @@ serie_rps:
 numero_rps:
   pos: [12, 23]
   type: 'number'
-  default: '0'
+  default: 0
 
 data_emissa_rps:
   pos: [24,31]
   type: 'date'
-  default: '0'
+  default: 0
 
 situacao_rps:
   pos: [32,32]
@@ -31,27 +31,27 @@ situacao_rps:
 valor_servicos:
   pos: [33,47]
   type: 'money'
-  default: '0'
+  default: 0
 
 valor_deducoes:
   pos: [48,62]
   type: 'money'  
-  default: '0'
+  default: 0
 
 codigo_servico_prestado:
   pos: [63,67]
   type: 'number'
-  default: '0'
+  default: 0
 
 aliquota:
   pos: [68,71]
   type: 'percentage'
-  default: '0'
+  default: 0
 
 iss_retido:
   pos: [72,72]
   type: 'number'
-  default: '0'
+  default: 0
 
 indicador_documento_tomador:
   pos: [73,73]
@@ -61,17 +61,17 @@ indicador_documento_tomador:
 documento_tomador:
   pos: [74,87]
   type: 'number'
-  default: '0'
+  default: 0
 
 inscricao_municipal_tomador:
   pos: [88,95]
   type: 'number'
-  default: '0'
+  default: 0
 
 inscricao_estadual_tomador:
   pos: [96,107]
   type: 'number'
-  default: '0'
+  default: 0
 
 razao_social_tomador:
   pos: [108,182]
@@ -116,7 +116,7 @@ uf_tomador:
 cep_tomador:
   pos: [358,365]
   type: 'number'
-  default: '0'
+  default: 0
 
 email_tomador:
   pos: [366,440]
@@ -126,37 +126,37 @@ email_tomador:
 retencao_pis:
   pos: [441,455]
   type: 'number'
-  default: '0'
+  default: 0
 
 retencao_cofins:
   pos: [456,470]
   type: 'number'
-  default: '0'
+  default: 0
 
 retencao_inss:
   pos: [471,485]
   type: 'number'
-  default: '0'
+  default: 0
 
 retencao_ir:
   pos: [486,500]
   type: 'number'
-  default: '0'
+  default: 0
 
 retencao_cssl:
   pos: [501,515]
   type: 'number'
-  default: '0'
+  default: 0
 
 valor_carga_tributaria:
   pos: [516,530]
   type: 'number'
-  default: '0'
+  default: 0
 
 porcentagem_carga_tributaria:
   pos: [531,535]
   type: 'number'
-  default: '0'
+  default: 0
 
 fonte_carga_tributaria:
   pos: [536,545]
@@ -166,22 +166,22 @@ fonte_carga_tributaria:
 cei:
   pos: [546,557]
   type: 'number'
-  default: '0'
+  default: 0
 
 matricula_obra:
   pos: [558,569]
   type: 'number'
-  default: '0'
+  default: 0
 
 municipio_prestacao:
   pos: [570,576]
   type: 'number'
-  default: '0'
+  default: 0
 
 numero_encapsulamento:
   pos: [577,586]
   type: 'number'
-  default: '0'
+  default: 0
 
 campo_reservado:
   pos: [587,786]

@@ -1,0 +1,4 @@
+tipo_registro:
+  pos: [1, 1]
+  type: 'number'
+  default: 9

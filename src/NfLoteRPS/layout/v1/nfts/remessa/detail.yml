@@ -1,0 +1,9 @@
+tipo_registro:
+  pos: [1, 1]
+  type: 'number'
+  default: 4
+
+tipo_documento:
+  pos: [2,3]
+  type: 'number'
+  default: 0

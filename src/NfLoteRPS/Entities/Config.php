@@ -14,7 +14,7 @@ class Config
 
     public $typeNf = NfType::NFS;
 
-    public $layout = Layout::REMESSA;
+    public $version = 2;
 
     public $pathSaveFile = '/tmp/';
 

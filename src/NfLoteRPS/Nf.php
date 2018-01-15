@@ -35,4 +35,17 @@ class Nf
         $nfeFactory = new NfeFactory($layoutRequest);
         return $nfeFactory->make();
     }
+
+    public function remessaNFTs(DataFile $dataFile)
+    {
+        $this->config->typeNf = NfType::NFTS;
+        $this->config->type = LayoutType::REMESSA;
+
+        $layoutRequest = new LayoutRequest;
+        $layoutRequest->setConfigYml($this->config);
+        $layoutRequest->setDataFile($dataFile);
+
+        $nfeFactory = new NfeFactory($layoutRequest);
+        return $nfeFactory->make();
+    }
 }

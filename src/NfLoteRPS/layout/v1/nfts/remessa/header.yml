@@ -6,22 +6,22 @@ tipo_registro:
 versao:
   pos: [2,4]
   type: 'number'
-  default: '002'
+  default: '001'
 
-inscricao_prestador:
+inscricao_tomador:
   pos: [5,12]
   type: 'number'
-  default: 0
+  default: '0'
 
 inicio_periodo_transmissao_arquivo:
   pos: [13,20]
   type: 'date'
-  default: 0
+  default: '0'
 
 fim_periodo_transmissao_arquivo:
   pos: [21,28]
   type: 'date'
-  default: 0
+  default: '0'
 
 endline:
   pos: [29,30]

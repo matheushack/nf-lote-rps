@@ -21,10 +21,10 @@ class YamlFactory
 
     public function loadYml($file)
     {
-        $filename = "{$this->options->pathYml}/v{$this->options->layout}/{$this->options->typeNf}/{$this->options->type}/$file";
+        $filename = "{$this->options->pathYml}/v{$this->options->version}/{$this->options->typeNf}/{$this->options->type}/$file";
 
         if (!file_exists($filename))
-            throw new LayoutException("Layout {$file} of type {$this->options->type} not found for version {$this->options->layout}");
+            throw new LayoutException("Layout {$file} of type {$this->options->type} not found for version {$this->options->version}");
 
         $this->fields = spyc_load_file($filename);
 
