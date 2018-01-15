@@ -10,12 +10,12 @@ numero_linhas:
 
 valor_total_servicos:
   pos: [9,23]
-  type: 'number'
+  type: 'money'
   default: '0'
 
 valor_total_deducoes:
   pos: [24,38]
-  type: 'number'
+  type: 'money'
   default: '0'
 
 endline:

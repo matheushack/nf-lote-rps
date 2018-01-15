@@ -37,7 +37,7 @@ class LayoutRequest extends YamlFactory
 
     public function getDataDetail()
     {
-        return $this->dataFile->detail->toArray();
+        return $this->dataFile->detail;
     }
 
     public function getDataTrailler()

@@ -12,6 +12,7 @@ class FieldType
     const ENDLINE = 'endline';
     const NOT_FILL = 'notFill';
     const CHARACTER = 'character';
+    const PERCENTAGE = 'percentage';
 
     public static function arrayAllowed()
     {
@@ -24,6 +25,7 @@ class FieldType
             self::ENDLINE,
             self::NOT_FILL,
             self::CHARACTER,
+            self::PERCENTAGE,
         ];
     }
 

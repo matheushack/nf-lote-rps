@@ -52,17 +52,18 @@ class NfeFactory
 
     private function save()
     {
-        $timestamp = Carbon::now()->timestamp;
+        // $timestamp = Carbon::now()->timestamp;
+        $timestamp = '1516014517';
         $file = "{$this->layoutRequest->getPathSaveFile()}/#{$timestamp}-{$this->layoutRequest->getTypeNf()}-{$this->layoutRequest->getType()}.txt";
-        $content = implode($this->rps->header, '');
+        $content = implode('', $this->rps->header);
 
         foreach($this->rps->detail as $detail){
-            $content .= implode($detail, '');
+            $content .= implode('', $detail);
         }
 
-        $content .= implode($this->rps->trailler, '');
+        $content .= implode('', $this->rps->trailler);
 
-        return $content;
+        // return $content;
 
         if(!file_put_contents($file, $content, FILE_TEXT))
             throw new \Exception("Problem generating file");

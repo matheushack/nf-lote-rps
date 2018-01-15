@@ -53,6 +53,7 @@ function convertFieldToType($value, $type, $amount = 1)
             return str_pad('', $amount);
         break;        
         case FieldType::MONEY: 
+        case FieldType::PERCENTAGE: 
             $money = str_replace(',', '', $value);
             $money = str_replace('.', '', $money);
             return str_pad($money, $amount, '0', STR_PAD_LEFT);

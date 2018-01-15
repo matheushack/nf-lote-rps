@@ -45,7 +45,7 @@ codigo_servico_prestado:
 
 aliquota:
   pos: [68,71]
-  type: 'number'
+  type: 'percentage'
   default: '0'
 
 iss_retido:

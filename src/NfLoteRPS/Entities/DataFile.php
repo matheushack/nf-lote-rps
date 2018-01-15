@@ -5,7 +5,7 @@ class DataFile
 {
     public $header;
 
-    public $detail;
+    public $detail = [];
 
     public $trailler;
 }

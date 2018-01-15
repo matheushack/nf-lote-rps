@@ -12,13 +12,14 @@ class DetailFactory
         $detail = [];
         $newData = [];
         $layout = $layoutRequest->getLayoutDetail();
-        $data[] = $layoutRequest->getDataDetail();
-
+        $data = $layoutRequest->getDataDetail();
 
         foreach($data as $line => $register){
+            $detailArray = $register->toArray();
+
             foreach($layout as $fieldLayout => $optionsLayout){
-                if(array_key_exists($fieldLayout, $register))
-                    $newData[$line][$fieldLayout] = $data[$line][$fieldLayout];
+                if(array_key_exists($fieldLayout, $detailArray))
+                    $newData[$line][$fieldLayout] = $detailArray[$fieldLayout];
                 else
                     $newData[$line][$fieldLayout] = '';
             }
@@ -29,7 +30,7 @@ class DetailFactory
                 $amount = ($layout[$field]['pos'][1] - $layout[$field]['pos'][0]) + 1;
 
                 if(empty($value) && data_get($layout[$field], 'default')){
-                    $detail[$line][$field] = $layout[$field]['default'];
+                    $detail[$line][$field] = convertFieldToType($layout[$field]['default'], $layout[$field]['type'], $amount);
                     continue;                
                 }              
 
