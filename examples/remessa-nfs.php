@@ -11,7 +11,7 @@ use \MatheusHack\NfLoteRPS\Entities\DataFile;
 try {
     $dataFile = new DataFile();
     $dataFile->header = new Header();
-    $dataFile->header->inscricao_prestador = '36827592';
+    $dataFile->header->inscricao_prestador = '99999999';
     $dataFile->header->inicio_periodo_transmissao_arquivo = Carbon::now()->format('Ymd');
     $dataFile->header->fim_periodo_transmissao_arquivo = Carbon::now()->format('Ymd');;
 
@@ -24,28 +24,20 @@ try {
         $aliquota = 2;
 
         $detail = new Detail();
-        $detail->serie_rps = 'MATHEUS123456';
+        $detail->serie_rps = 'SERIE';
         $detail->numero_rps = $i;
         $detail->data_emissa_rps = Carbon::now()->format('Ymd');
         $detail->valor_servicos = number_format($valorServicos, 2, ',', '');
         $detail->valor_deducoes = number_format($valorDeducoes, 2, ',', '');
-        $detail->codigo_servico_prestado = '07123';
-//        $detail->codigo_servico_prestado = '07109';
+        $detail->codigo_servico_prestado = '9999';
         $detail->aliquota = number_format($aliquota, 2, ',', '');;
         $detail->iss_retido = 2;
         $detail->indicador_documento_tomador = 2;
-        $detail->documento_tomador = '';
-        $detail->razao_social_tomador = 'E-HTL RESERVAS ONLINE DE HOTEIS';
-        $detail->tipo_endereco_tomador = 'Av';
-        $detail->endereco_tomador = 'Ipiranga';
-        $detail->numero_endereco_tomador = '104';
-        $detail->complemento_endereco_tomador = '4º andar';
-        $detail->bairro_tomador = 'Centro';
-        $detail->cidade_tomador = 'São Paulo';
-        $detail->uf_tomador = 'SP';
-        $detail->cep_tomador = '01046010';
-        $detail->email_tomador = 'matheus@e-htl.com.br';
-        $detail->descriminacao_servico = 'Nota fiscal de exemplo|Tipo CNPJ';
+        $detail->documento_tomador = '09390630000194';
+        $detail->razao_social_tomador = 'RAZAO SOCIAL EMPRESA';
+        $detail->cep_tomador = '99999999';
+        $detail->email_tomador = 'email@dominio.com.br';
+        $detail->descriminacao_servico = 'NFS|Nota fiscal de exemplo';
 
         $totalServicos = $totalServicos + $valorServicos;
         $totalDeducoes = $totalDeducoes + $valorDeducoes;

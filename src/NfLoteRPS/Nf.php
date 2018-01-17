@@ -25,6 +25,7 @@ class Nf
 
     public function remessaNFs(DataFile $dataFile)
     {
+        $this->config->version = 2;
         $this->config->typeNf = NfType::NFS;
         $this->config->type = LayoutType::REMESSA;
 
@@ -38,6 +39,7 @@ class Nf
 
     public function remessaNFTs(DataFile $dataFile)
     {
+        $this->config->version = 1;
         $this->config->typeNf = NfType::NFTS;
         $this->config->type = LayoutType::REMESSA;
 

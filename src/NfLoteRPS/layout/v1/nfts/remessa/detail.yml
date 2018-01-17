@@ -6,4 +6,127 @@ tipo_registro:
 tipo_documento:
   pos: [2,3]
   type: 'number'
-  default: 0
+  default: '02'
+
+serie_documento:
+  pos: [4,8]
+  type: 'text'
+
+numero_documento:
+  pos: [9,20]
+  type: 'number'
+
+data_prestacao:
+  pos: [21,28]
+  type: 'date'
+
+situacao:
+  pos: [29,29]
+  type: 'text'
+  default: 'N'
+
+tributacao:
+  pos: [30,30]
+  type: 'character'
+  default: 'T'
+
+valor_servicos:
+  pos: [31,45]
+  type: 'money'
+
+valor_deducoes:
+  pos: [46,60]
+  type: 'money'
+
+codigo_servico_prestado:
+  pos: [61,65]
+  type: 'number'
+
+codigo_subitem:
+  pos: [66,69]
+  type: 'number'
+
+aliquota:
+  pos: [70,73]
+  type: 'percentage'
+
+iss_retido:
+  pos: [74,74]
+  type: 'number'
+  default: '2'
+
+indicador_documento_prestador:
+  pos: [75,75]
+  type: 'number'
+  default: 2
+
+documento_prestador:
+  pos: [76,89]
+  type: 'number'
+
+inscricao_municipal_prestador:
+  pos: [90,97]
+  type: 'number'
+
+razao_social_prestador:
+  pos: [98,172]
+  type: 'text'
+
+tipo_endereco_prestador:
+  pos: [173,175]
+  type: 'text'
+
+endereco_prestador:
+  pos: [176,225]
+  type: 'text'
+
+numero_endereco_prestador:
+  pos: [226,235]
+  type: 'text'
+
+complemento_endereco_prestador:
+  pos: [236,265]
+  type: 'text'
+
+bairro_prestador:
+  pos: [266,295]
+  type: 'text'
+
+cidade_prestador:
+  pos: [296,345]
+  type: 'text'
+
+uf_prestador:
+  pos: [346,347]
+  type: 'text'
+
+cep_prestador:
+  pos: [348,355]
+  type: 'number'
+
+email_prestador:
+  pos: [356,430]
+  type: 'text'
+
+tipo:
+  pos: [431,431]
+  type: 'number'
+  default: '1'
+
+regime_tributacao:
+  pos: [432,432]
+  type: 'number'
+  default: '0'
+
+data_pagamento_nota:
+  pos: [433,440]
+  type: 'text'
+
+descriminacao_servico:
+  pos: [441,1000]
+  type: 'notFill'
+  maximum: 560
+
+endline:
+  pos: [1001, 1003]
+  type: 'endline'
