@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4842d6ea-253e-4e86-89c9-a12bcb5adfef" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/examples/remessa-nfs.php" afterPath="$PROJECT_DIR$/examples/remessa-nfs.php" />
-      <change beforePath="$PROJECT_DIR$/index.php" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/NfLoteRPS/Nf.php" afterPath="$PROJECT_DIR$/src/NfLoteRPS/Nf.php" />
-      <change beforePath="$PROJECT_DIR$/src/NfLoteRPS/layout/v1/nfts/remessa/detail.yml" afterPath="$PROJECT_DIR$/src/NfLoteRPS/layout/v1/nfts/remessa/detail.yml" />
-      <change beforePath="$PROJECT_DIR$/src/NfLoteRPS/layout/v1/nfts/remessa/header.yml" afterPath="$PROJECT_DIR$/src/NfLoteRPS/layout/v1/nfts/remessa/header.yml" />
-      <change beforePath="$PROJECT_DIR$/src/NfLoteRPS/layout/v1/nfts/remessa/trailler.yml" afterPath="$PROJECT_DIR$/src/NfLoteRPS/layout/v1/nfts/remessa/trailler.yml" />
-      <change beforePath="$PROJECT_DIR$/src/NfLoteRPS/layout/v2/nfs/remessa/detail.yml" afterPath="$PROJECT_DIR$/src/NfLoteRPS/layout/v2/nfs/remessa/detail.yml" />
-      <change beforePath="$PROJECT_DIR$/src/NfLoteRPS/layout/v2/nfs/remessa/header.yml" afterPath="$PROJECT_DIR$/src/NfLoteRPS/layout/v2/nfs/remessa/header.yml" />
-      <change beforePath="$PROJECT_DIR$/src/NfLoteRPS/layout/v2/nfs/remessa/trailler.yml" afterPath="$PROJECT_DIR$/src/NfLoteRPS/layout/v2/nfs/remessa/trailler.yml" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -246,7 +236,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9193000" />
+    <option name="totallyTimeSpent" value="9306000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -269,7 +259,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32859176" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24967825" sideWeight="0.4915254" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32859176" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32859176" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3997155" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22393823" sideWeight="0.52204835" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
