@@ -1,5 +1,6 @@
 composer.lock
 vendor
 /vendor
-src/NfeLoteRPS/layout/modelos
-/src/NfeLoteRPS/layout/modelos
+.idea
+/.idea
+index.php

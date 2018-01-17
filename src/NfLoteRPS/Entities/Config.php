@@ -16,6 +16,6 @@ class Config
 
     public $version = 2;
 
-    public $pathSaveFile = '/tmp/';
+    public $pathSaveFile = '/tmp';
 
 }

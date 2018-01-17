@@ -10,15 +10,30 @@ use MatheusHack\NfLoteRPS\Constants\LayoutType;
 use MatheusHack\NfLoteRPS\Constants\FieldParameter;
 use MatheusHack\NfLoteRPS\Exceptions\LayoutException;
 
+/**
+ * Class YamlFactory
+ * @package MatheusHack\NfLoteRPS\Factories
+ */
 class YamlFactory
 {
+    /**
+     * @var
+     */
     protected $options;
 
+    /**
+     * @param Config $config
+     */
     public function setOptions(Config $config)
     {
         $this->options = $config;
     }
 
+    /**
+     * @param $file
+     * @return mixed
+     * @throws LayoutException
+     */
     public function loadYml($file)
     {
         $filename = "{$this->options->pathYml}/v{$this->options->version}/{$this->options->typeNf}/{$this->options->type}/$file";
@@ -31,6 +46,10 @@ class YamlFactory
         return $this->validateLayout();
     }
 
+    /**
+     * @return mixed
+     * @throws LayoutException
+     */
     private function validateLayout()
     {
         if(empty($this->fields))
@@ -44,6 +63,9 @@ class YamlFactory
         return $this->fields;
     }
 
+    /**
+     * @throws LayoutException
+     */
     private function validateCollision()
     {
         foreach($this->fields as $name => $field){
@@ -69,6 +91,9 @@ class YamlFactory
         }
     }
 
+    /**
+     * @throws LayoutException
+     */
     private function validateType()
     {
         foreach($this->fields as $field => $options){
@@ -77,6 +102,9 @@ class YamlFactory
         }      
     }
 
+    /**
+     * @throws LayoutException
+     */
     private function validateDefault()
     {
         foreach($this->fields as $field => $options){
@@ -111,6 +139,9 @@ class YamlFactory
         }      
     }
 
+    /**
+     * @throws LayoutException
+     */
     private function validateParameters()
     {
         foreach($this->fields as $field => $options){

@@ -46,24 +46,25 @@ function convertFieldToType($value, $type, $amount = 1)
 {
     switch($type){
         case FieldType::TEXT: 
-        case FieldType::CHARACTER: 
-            return str_pad($value, $amount);
+        case FieldType::CHARACTER:
+            $value = str_pad($value, $amount);
         break;
-        case FieldType::WHITE: 
-            return str_pad('', $amount);
+        case FieldType::WHITE:
+            $value = str_pad('', $amount);
         break;        
         case FieldType::MONEY: 
         case FieldType::PERCENTAGE: 
             $money = str_replace(',', '', $value);
             $money = str_replace('.', '', $money);
-            return str_pad($money, $amount, '0', STR_PAD_LEFT);
+            $value = str_pad($money, $amount, '0', STR_PAD_LEFT);
         break;
         case FieldType::NUMBER: 
         case FieldType::DATE: 
-            return str_pad($value, $amount, '0', STR_PAD_LEFT);
+            $value = str_pad($value, $amount, '0', STR_PAD_LEFT);
         break;
-    }    
+    }
 
+    $value = substr($value, 0, $amount);
     return $value;
 }
 
