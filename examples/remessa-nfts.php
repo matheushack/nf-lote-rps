@@ -31,7 +31,6 @@ try {
         $detail->valor_deducoes = number_format($valorDeducoes, 2, ',', '');
         $detail->codigo_servico_prestado = '9999';
         $detail->aliquota = number_format($aliquota, 2, ',', '');;
-        $detail->iss_retido = 1;
         $detail->indicador_documento_prestador = 2;
         $detail->documento_prestador = '09390630000194';
         $detail->razao_social_prestador = 'RAZAO SOCIAL EMPRESA';
