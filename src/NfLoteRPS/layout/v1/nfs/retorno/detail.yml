@@ -23,6 +23,7 @@ tipo_rps:
   pos: [40,44]
   type: 'text'
   default: 'RPS'
+  matrix: 'TypeRps'
 
 serie_rps:
   pos: [45,49]

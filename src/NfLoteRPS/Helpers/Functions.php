@@ -4,6 +4,11 @@ use Carbon\Carbon;
 use MatheusHack\NfLoteRPS\Constants\FieldType;
 use MatheusHack\NfLoteRPS\Exceptions\ValidateException;
 
+/**
+ * @param $date
+ * @param string $format
+ * @return bool
+ */
 function validateDate($date, $format = 'Y-m-d H:i:s')
 {
     if(!validateNumeric($date))
@@ -14,16 +19,24 @@ function validateDate($date, $format = 'Y-m-d H:i:s')
         
     $d = Carbon::createFromFormat($format, $date);
     return $d && $d->format($format) == $date;
-}  
+}
 
+/**
+ * @param $number
+ * @return bool
+ */
 function validateNumeric($number)
 { 
     if(is_numeric($number))
         return true;
 
     return false;
-} 
+}
 
+/**
+ * @param $character
+ * @return bool
+ */
 function validateCharacter($character)
 {
     if(strlen($character) == 1)
@@ -32,6 +45,11 @@ function validateCharacter($character)
     return false;
 }
 
+/**
+ * @param $text
+ * @param null $remove
+ * @return mixed|string
+ */
 function treatText($text, $remove = null)
 {
     $result = strtoupper(removeAccents(trim(html_entity_decode($text))));
@@ -42,6 +60,12 @@ function treatText($text, $remove = null)
     return $result;
 }
 
+/**
+ * @param $value
+ * @param $type
+ * @param int $amount
+ * @return bool|string
+ */
 function convertFieldToType($value, $type, $amount = 1)
 {
     switch($type){
@@ -69,6 +93,12 @@ function convertFieldToType($value, $type, $amount = 1)
     return $value;
 }
 
+/**
+ * @param $value
+ * @param $type
+ * @param int $line
+ * @return int|string
+ */
 function treatFieldToType($value, $type, $line = 0)
 {
     try {
@@ -119,6 +149,10 @@ function treatFieldToType($value, $type, $line = 0)
     return $value;
 }
 
+/**
+ * @param $string
+ * @return null|string|string[]
+ */
 function removeAccents($string)
 {
     return preg_replace([
@@ -141,6 +175,10 @@ function removeAccents($string)
     );
 }
 
+/**
+ * @param $string
+ * @return false|int
+ */
 function isUtf8($string)
 {
     return preg_match('%^(?:
@@ -157,6 +195,14 @@ function isUtf8($string)
     );
 }
 
+/**
+ * @param array $parameters
+ * @param string $value
+ * @param string $field
+ * @param int $amount
+ * @return bool|string
+ * @throws ValidateException
+ */
 function validateFields(array $parameters, $value = '', $field = '', $amount = 1)
 {
     switch($parameters['type']){
@@ -198,11 +244,35 @@ function validateFields(array $parameters, $value = '', $field = '', $amount = 1
             $newValue = chr(13).chr(10);
         break;
 
-    }    
+    }
+
+    $existMatrix = data_get($parameters, 'matrix', false);
+
+    if($existMatrix != false && !validateValueMatrix($parameters['matrix'], $value))
+        throw new ValidateException("{$field} field value is not valid");
 
     return convertFieldToType($newValue, $parameters['type'], $amount);
 }
 
+/**
+ * @param $matrix
+ * @param string $value
+ * @return bool
+ */
+function validateValueMatrix($matrix, $value = '')
+{
+    $class = "\\MatheusHack\\NfLoteRPS\\Constants\DataMatrix\\".studly_case($matrix);
+
+    if(!in_array($value, array_values($class::arrayAllowed())))
+        return false;
+
+    return true;
+}
+
+/**
+ * @param $str
+ * @return string
+ */
 function formatCurrency($str){
     $result = $str;
 

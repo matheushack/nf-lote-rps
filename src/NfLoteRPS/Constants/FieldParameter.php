@@ -2,21 +2,39 @@
 
 namespace MatheusHack\NfLoteRPS\Constants;
 
+use MatheusHack\NfLoteRPS\Traits\ConstantsTrait;
+
+/**
+ * Class FieldParameter
+ * @package MatheusHack\NfLoteRPS\Constants
+ */
 class FieldParameter
 {
-    const POS = 'pos';
-    const TYPE = 'type';
-    const DEFAULT = 'default';
-    const MAXIMUM = 'maximum';
+    use ConstantsTrait;
 
-    public static function arrayAllowed()
-    {
-        return [
-            self::POS,
-            self::TYPE,
-            self::DEFAULT,
-            self::MAXIMUM,
-        ];
-    }
+    /**
+     *
+     */
+    const POS = 'pos';
+
+    /**
+     *
+     */
+    const TYPE = 'type';
+
+    /**
+     *
+     */
+    const MATRIX = 'matrix';
+
+    /**
+     *
+     */
+    const DEFAULT = 'default';
+
+    /**
+     *
+     */
+    const MAXIMUM = 'maximum';
 
 }

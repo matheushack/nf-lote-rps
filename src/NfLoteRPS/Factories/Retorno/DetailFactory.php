@@ -13,8 +13,16 @@ use Illuminate\Support\Collection;
 use MatheusHack\NfLoteRPS\Constants\FieldType;
 use MatheusHack\NfLoteRPS\Requests\LayoutRequest;
 
+/**
+ * Class DetailFactory
+ * @package MatheusHack\NfLarrayAllowedoteRPS\Factories\Retorno
+ */
 class DetailFactory
 {
+    /**
+     * @param LayoutRequest $layoutRequest
+     * @return Collection
+     */
     public function make(LayoutRequest $layoutRequest)
     {
         $details = [];

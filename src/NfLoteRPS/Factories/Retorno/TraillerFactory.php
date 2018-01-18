@@ -12,8 +12,16 @@ namespace MatheusHack\NfLoteRPS\Factories\Retorno;
 use MatheusHack\NfLoteRPS\Constants\FieldType;
 use MatheusHack\NfLoteRPS\Requests\LayoutRequest;
 
+/**
+ * Class TraillerFactory
+ * @package MatheusHack\NfLoteRPS\Factories\Retorno
+ */
 class TraillerFactory
 {
+    /**
+     * @param LayoutRequest $layoutRequest
+     * @return \stdClass
+     */
     public function make(LayoutRequest $layoutRequest)
     {
         $trailler = new \stdClass();

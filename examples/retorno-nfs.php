@@ -9,9 +9,16 @@
 require_once ('vendor/autoload.php');
 
 use MatheusHack\NfLoteRPS\Nf;
+use \MatheusHack\NfLoteRPS\Entities\Config;
 
 try{
     $nf = new Nf();
+    $config = new Config();
+
+    $config->version = 1;
+    $nf->configure($config);
+
+
     $file = 'ENDERECO/arquivo.txt';
     $retorno = $nf->retornoNFs($file);
 

@@ -59,6 +59,7 @@ class YamlFactory
         $this->validateType();
         $this->validateDefault();
         $this->validateParameters();
+        $this->validateMatrix();
 
         return $this->fields;
     }
@@ -154,5 +155,23 @@ class YamlFactory
                     throw new LayoutException("There are invalid parameters in {$field} field");
             }
         }
-    }    
+    }
+
+    /**
+     * @throws LayoutException
+     */
+    private function validateMatrix()
+    {
+        foreach($this->fields as $field => $options){
+            $existMatrix = data_get($options, 'matrix', false);
+            $existDefault = data_get($options, 'default', false);
+
+            if($existMatrix != false && $existDefault != false){
+                $class = "\\MatheusHack\\NfLoteRPS\\Constants\DataMatrix\\".studly_case($options['matrix']);
+
+                if(!in_array($options['default'], $class::arrayAllowed()))
+                    throw new LayoutException("Default {$field} field value is not valid");
+            }
+        }
+    }
 }

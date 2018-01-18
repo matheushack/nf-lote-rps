@@ -7,6 +7,7 @@ tipo_rps:
   pos: [2, 6]
   type: 'text'
   default: 'RPS'
+  matrix: 'TypeRps'
 
 serie_rps:
   pos: [7, 11]
@@ -24,6 +25,7 @@ situacao_rps:
   pos: [32,32]
   type: 'character'
   default: 'T'
+  matrix: 'SituationRps'
 
 valor_servicos:
   pos: [33,47]
@@ -44,11 +46,13 @@ aliquota:
 iss_retido:
   pos: [72,72]
   type: 'number'
+  matrix: 'IssWithheld'
 
 indicador_documento_tomador:
   pos: [73,73]
   type: 'number'
   default: 2
+  matrix: 'TakerIndicator'
 
 documento_tomador:
   pos: [74,87]

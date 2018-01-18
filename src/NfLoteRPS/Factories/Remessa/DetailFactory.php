@@ -5,8 +5,17 @@ use MatheusHack\NfLoteRPS\Constants\FieldType;
 use MatheusHack\NfLoteRPS\Requests\LayoutRequest;
 use MatheusHack\NfLoteRPS\Exceptions\DetailException;
 
+/**
+ * Class DetailFactory
+ * @package MatheusHack\NfLoteRPS\Factories\Remessa
+ */
 class DetailFactory
 {
+    /**
+     * @param LayoutRequest $layoutRequest
+     * @return array
+     * @throws \MatheusHack\NfLoteRPS\Exceptions\ValidateException
+     */
     public function make(LayoutRequest $layoutRequest)
     {
         $detail = [];
