@@ -1,5 +1,5 @@
 {
-    "name": "MatheusHack/NfLoteRPS",
+    "name": "matheushack/nf-lote-rps",
     "type": "library",
     "description": "Projeto para criar arquivos de remessas e processar arquivos de retorno de lote RPS da prefeitura de São Paulo",
     "keywords": ["rps", "lote", "nf", "nfs", "nfts", "são paulo", "remessa", "retorno"],
