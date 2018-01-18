@@ -2,8 +2,8 @@
 namespace MatheusHack\NfLoteRPS\Factories\Remessa;
 
 use MatheusHack\NfLoteRPS\Constants\FieldType;
+use MatheusHack\NfLoteRPS\Helpers\Functions;
 use MatheusHack\NfLoteRPS\Requests\LayoutRequest;
-use MatheusHack\NfLoteRPS\Exceptions\HeaderException;
 
 /**
  * Class HeaderFactory
@@ -11,6 +11,18 @@ use MatheusHack\NfLoteRPS\Exceptions\HeaderException;
  */
 class HeaderFactory
 {
+    /**
+     * @var Functions
+     */
+    private $functions;
+
+    /**
+     * DetailFactory constructor.
+     */
+    function __construct()
+    {
+        $this->functions = new Functions();
+    }
 
     /**
      * @param LayoutRequest $layoutRequest
@@ -40,16 +52,16 @@ class HeaderFactory
             }              
 
             if(empty($newData[$field]) && $parameters['type'] != FieldType::ENDLINE){
-                $header[$field] = convertFieldToType('', $parameters['type'], $amount);
+                $header[$field] = $this->functions->convertFieldToType('', $parameters['type'], $amount);
                 continue;
             }
 
             if($parameters['type'] == FieldType::ENDLINE){
-                $header[$field] = validateFields($parameters, '', $field, $amount);
+                $header[$field] = $this->functions->validateFields($parameters, '', $field, $amount);
                 continue;
             }  
 
-            $header[$field] = validateFields($parameters, $newData[$field], $field, $amount);
+            $header[$field] = $this->functions->validateFields($parameters, $newData[$field], $field, $amount);
         }
 
         return $header;

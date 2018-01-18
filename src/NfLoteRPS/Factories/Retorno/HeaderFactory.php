@@ -10,6 +10,7 @@ namespace MatheusHack\NfLoteRPS\Factories\Retorno;
 
 
 use MatheusHack\NfLoteRPS\Constants\FieldType;
+use MatheusHack\NfLoteRPS\Helpers\Functions;
 use MatheusHack\NfLoteRPS\Requests\LayoutRequest;
 
 /**
@@ -18,6 +19,18 @@ use MatheusHack\NfLoteRPS\Requests\LayoutRequest;
  */
 class HeaderFactory
 {
+    /**
+     * @var Functions
+     */
+    private $functions;
+
+    /**
+     * DetailFactory constructor.
+     */
+    function __construct()
+    {
+        $this->functions = new Functions();
+    }
 
     /**
      * @param LayoutRequest $layoutRequest
@@ -36,7 +49,7 @@ class HeaderFactory
                 $amount = ($parameters['pos'][1] - $parameters['pos'][0]) + 1;
 
             $valueFile = substr($data, $parameters['pos'][0] - 1, $amount);
-            $header->$field = treatFieldToType($valueFile, $parameters['type']);
+            $header->$field = $this->functions->treatFieldToType($valueFile, $parameters['type']);
         }
 
         return $header;

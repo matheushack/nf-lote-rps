@@ -9,6 +9,7 @@ use MatheusHack\NfLoteRPS\Constants\FieldType;
 use MatheusHack\NfLoteRPS\Constants\LayoutType;
 use MatheusHack\NfLoteRPS\Constants\FieldParameter;
 use MatheusHack\NfLoteRPS\Exceptions\LayoutException;
+use MatheusHack\NfLoteRPS\Helpers\Functions;
 
 /**
  * Class YamlFactory
@@ -16,10 +17,17 @@ use MatheusHack\NfLoteRPS\Exceptions\LayoutException;
  */
 class YamlFactory
 {
+    private $functions;
+
     /**
      * @var
      */
     protected $options;
+
+    function __construct()
+    {
+        $this->functions = new Functions();
+    }
 
     /**
      * @param Config $config
@@ -118,19 +126,19 @@ class YamlFactory
                     continue;
                 break;
                 case FieldType::NUMBER: 
-                    if(!validateNumeric($options['default']))
+                    if(!$this->functions->validateNumeric($options['default']))
                         throw new LayoutException("The default value of the {$field} field must be a number");
                 break;
                 case FieldType::DATE: 
-                    if(!validateDate($options['default'], 'Ymd'))
+                    if(!$this->functions->validateDate($options['default'], 'Ymd'))
                         throw new LayoutException("The default value of the {$field} field must be filled in the date format (YYYYMMDD)");
                 break;
                 case FieldType::DATETIME:
-                    if(!validateDate($options['default'], 'YmdHis'))
+                    if(!$this->functions->validateDate($options['default'], 'YmdHis'))
                         throw new LayoutException("The default value of the {$field} field must be filled in the date format (YYYYMMDD)");
                     break;
                 case FieldType::CHARACTER: 
-                    if(!validateCharacter($options['default']))
+                    if(!$this->functions->validateCharacter($options['default']))
                         throw new LayoutException("The default {$field} field value must be a character");
                 break;
             }

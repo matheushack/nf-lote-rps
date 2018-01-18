@@ -11,6 +11,7 @@ namespace MatheusHack\NfLoteRPS\Factories\Retorno;
 
 use Illuminate\Support\Collection;
 use MatheusHack\NfLoteRPS\Constants\FieldType;
+use MatheusHack\NfLoteRPS\Helpers\Functions;
 use MatheusHack\NfLoteRPS\Requests\LayoutRequest;
 
 /**
@@ -19,6 +20,19 @@ use MatheusHack\NfLoteRPS\Requests\LayoutRequest;
  */
 class DetailFactory
 {
+    /**
+     * @var Functions
+     */
+    private $functions;
+
+    /**
+     * DetailFactory constructor.
+     */
+    function __construct()
+    {
+        $this->functions = new Functions();
+    }
+
     /**
      * @param LayoutRequest $layoutRequest
      * @return Collection
@@ -39,7 +53,7 @@ class DetailFactory
                     $amount = ($parameters['pos'][1] - $parameters['pos'][0]) + 1;
 
                 $valueFile = substr($detail, $parameters['pos'][0] - 1, $amount);
-                $stdClass->$field = treatFieldToType($valueFile, $parameters['type'], $key);
+                $stdClass->$field = $this->functions->treatFieldToType($valueFile, $parameters['type'], $key);
             }
 
             $details[$key] = $stdClass;

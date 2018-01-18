@@ -19,9 +19,6 @@
         "illuminate/support": "~5.1.41"
     },
     "autoload": {
-        "files": [
-            "src/NfLoteRPS/Helpers/Functions.php"
-        ],        
         "psr-4": {
             "MatheusHack\\NfLoteRPS\\": "src/NfLoteRPS"
         }

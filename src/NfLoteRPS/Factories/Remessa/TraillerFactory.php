@@ -2,8 +2,8 @@
 namespace MatheusHack\NfLoteRPS\Factories\Remessa;
 
 use MatheusHack\NfLoteRPS\Constants\FieldType;
+use MatheusHack\NfLoteRPS\Helpers\Functions;
 use MatheusHack\NfLoteRPS\Requests\LayoutRequest;
-use MatheusHack\NfLoteRPS\Exceptions\TraillerException;
 
 /**
  * Class TraillerFactory
@@ -11,6 +11,19 @@ use MatheusHack\NfLoteRPS\Exceptions\TraillerException;
  */
 class TraillerFactory
 {
+    /**
+     * @var Functions
+     */
+    private $functions;
+
+    /**
+     * DetailFactory constructor.
+     */
+    function __construct()
+    {
+        $this->functions = new Functions();
+    }
+
     /**
      * @param LayoutRequest $layoutRequest
      * @return array
@@ -39,16 +52,16 @@ class TraillerFactory
             }              
 
             if(empty($newData[$field]) && $parameters['type'] != FieldType::ENDLINE){
-                $trailler[$field] = convertFieldToType('', $parameters['type'], $amount);
+                $trailler[$field] = $this->functions->convertFieldToType('', $parameters['type'], $amount);
                 continue;
             }
 
             if($parameters['type'] == FieldType::ENDLINE){
-                $trailler[$field] = validateFields($parameters, '', $field, $amount);
+                $trailler[$field] = $this->functions->validateFields($parameters, '', $field, $amount);
                 continue;
             }              
 
-            $trailler[$field] = validateFields($parameters, $newData[$field], $field, $amount);
+            $trailler[$field] = $this->functions->validateFields($parameters, $newData[$field], $field, $amount);
         }
 
         return $trailler;
