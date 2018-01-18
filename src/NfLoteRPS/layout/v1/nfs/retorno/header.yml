@@ -1,0 +1,25 @@
+tipo_registro:
+  pos: [1,1]
+  type: 'number'
+  default: 1
+
+versao:
+  pos: [2,4]
+  type: 'number'
+  default: 1
+
+inscricao_municipal:
+  pos: [5,12]
+  type: 'number'
+
+inicio_periodo_transmissao_arquivo:
+  pos: [13,20]
+  type: 'date'
+
+fim_periodo_transmissao_arquivo:
+  pos: [21,28]
+  type: 'date'
+
+endline:
+  pos: [29,30]
+  type: 'endline'
