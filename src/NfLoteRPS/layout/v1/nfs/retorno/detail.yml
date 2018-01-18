@@ -3,201 +3,135 @@ tipo_registro:
   type: 'number'
   default: 2
 
-numero_nf:
+inscricao_municipal_prestador:
   pos: [2,9]
   type: 'number'
 
+numero_nf:
+  pos: [10,17]
+  type: 'number'
+
 data_nf:
-  pos: [10,23]
+  pos: [18,31]
   type: 'datetime'
 
 codigo_verificao_nf:
-  pos: [24,31]
+  pos: [32,39]
   type: 'text'
 
 tipo_rps:
-  pos: [32,36]
+  pos: [40,44]
   type: 'text'
   default: 'RPS'
 
 serie_rps:
-  pos: [37,41]
+  pos: [45,49]
   type: 'text'
 
 numero_rps:
-  pos: [42,53]
+  pos: [50,61]
   type: 'number'
 
 data_emissa_rps:
-  pos: [54,61]
+  pos: [62,69]
   type: 'date'
 
-inscricao_municipal_prestador:
-  pos: [62,69]
-  type: 'number'
-
-indicador_documento_prestador:
-  pos: [70,70]
-  type: 'number'
-  default: 2
-
-documento_prestador:
-  pos: [71,84]
-  type: 'number' 
-  
-razao_social_prestador:
-  pos: [85,159]
-  type: 'text'
-
-tipo_endereco_prestador:
-  pos: [160,162]
-  type: 'text'
-
-endereco_prestador:
-  pos: [163,212]
-  type: 'text'
-
-numero_endereco_prestador:
-  pos: [213,222]
-  type: 'text'
-
-complemento_endereco_prestador:
-  pos: [223,252]
-  type: 'text'
-
-bairro_prestador:
-  pos: [253,282]
-  type: 'text'
-
-cidade_prestador:
-  pos: [283,332]
-  type: 'text'
-
-uf_prestador:
-  pos: [333,334]
-  type: 'text'
-
-cep_prestador:
-  pos: [335,342]
-  type: 'number'
-
-email_prestador:
-  pos: [343,4117]
-  type: 'text' 
-
-opcao_simples:
-  pos: [418,418]
-  type: 'number'
-  default: 0
+data_quitacao_guia:
+  pos: [70,77]
+  type: 'date'
 
 situacao_nf:
-  pos: [419,419]
+  pos: [78,78]
   type: 'character'
   default: 'T'
 
-data_cancelamento:
-  pos: [420,427]
-  type: 'date'
-
-numero_guia:
-  pos: [428,439]
-  type: 'number'
-
-data_quitacao_guia:
-  pos: [440,447]
-  type: 'date'
-
 valor_servicos:
-  pos: [448,462]
+  pos: [79,93]
   type: 'money'
 
 valor_deducoes:
-  pos: [463,477]
+  pos: [94,108]
   type: 'money'
 
 codigo_servico_prestado:
-  pos: [478,482]
+  pos: [109,113]
   type: 'number'
 
 aliquota:
-  pos: [483,486]
+  pos: [114,117]
   type: 'percentage'
 
 valor_iss:
-  pos: [487,501]
+  pos: [118,132]
   type: 'money'
 
 valor_credito:
-  pos: [502,516]
+  pos: [133,147]
   type: 'money'
 
 iss_retido:
-  pos: [517,517]
+  pos: [148,148]
   type: 'character'
   default: 'N'
 
 indicador_documento_tomador:
-  pos: [518,518]
+  pos: [149,149]
   type: 'number'
   default: 2
 
 documento_tomador:
-  pos: [519,532]
+  pos: [150,163]
   type: 'number'
 
 inscricao_municipal_tomador:
-  pos: [533,540]
+  pos: [164,171]
   type: 'number'
 
 inscricao_estadual_tomador:
-  pos: [541,552]
+  pos: [172,183]
   type: 'number'
 
 razao_social_tomador:
-  pos: [553,627]
+  pos: [184,258]
   type: 'text'
 
 tipo_endereco_tomador:
-  pos: [628,630]
+  pos: [259,261]
   type: 'text'
 
 endereco_tomador:
-  pos: [631,680]
+  pos: [262,311]
   type: 'text'
 
 numero_endereco_tomador:
-  pos: [681,690]
+  pos: [312,321]
   type: 'text'
 
 complemento_endereco_tomador:
-  pos: [691,720]
+  pos: [322,351]
   type: 'text'
 
 bairro_tomador:
-  pos: [721,750]
+  pos: [352,381]
   type: 'text'
 
 cidade_tomador:
-  pos: [751,800]
+  pos: [382,431]
   type: 'text'
 
 uf_tomador:
-  pos: [801,802]
+  pos: [432,433]
   type: 'text'
 
 cep_tomador:
-  pos: [803,810]
+  pos: [434,441]
   type: 'number'
 
 email_tomador:
-  pos: [811,885]
+  pos: [442,516]
   type: 'text'
 
 descriminacao_servico:
-  pos: [886, 1000]
+  pos: [517, 1000]
   type: 'notFill'
-  maximum: 115
-
-endline:
-  pos: [1001, 1003]
-  type: 'endline'
+  maximum: 484

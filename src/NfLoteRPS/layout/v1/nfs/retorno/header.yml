@@ -19,7 +19,3 @@ inicio_periodo_transmissao_arquivo:
 fim_periodo_transmissao_arquivo:
   pos: [21,28]
   type: 'date'
-
-endline:
-  pos: [29,30]
-  type: 'endline'

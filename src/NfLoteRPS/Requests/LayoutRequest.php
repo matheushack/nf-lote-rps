@@ -4,6 +4,7 @@ namespace MatheusHack\NfLoteRPS\Requests;
 use MatheusHack\NfLoteRPS\Entities\Config;
 use MatheusHack\NfLoteRPS\Entities\DataFile;
 use MatheusHack\NfLoteRPS\Factories\YamlFactory;
+use MatheusHack\NfLoteRPS\Exceptions\ValidateException;
 
 class LayoutRequest extends YamlFactory
 {
@@ -14,6 +15,8 @@ class LayoutRequest extends YamlFactory
     private $layoutTrailler = [];
 
     private $dataFile;
+
+    private $file;
 
     public function getLayoutHeader()
     {
@@ -60,6 +63,34 @@ class LayoutRequest extends YamlFactory
         return $this->options->typeNf;
     }
 
+    public function getFileHeader()
+    {
+        $key = key($this->file);
+        return $this->file[$key];
+    }
+
+    public function getFileDetails()
+    {
+        $file = $this->file;
+        $keyHeader = key($file);
+        end($file);
+        $keyTrailler = key($file);
+
+        unset($file[$keyHeader]);
+        unset($file[$keyTrailler]);
+
+        return array_values($file);
+    }
+
+
+    public function getFileTrailler()
+    {
+        end($this->file);
+        $key = key($this->file);
+        return $this->file[$key];
+    }
+
+
     public function setConfigYml(Config $config)
     {
         parent::setOptions($config);
@@ -90,6 +121,17 @@ class LayoutRequest extends YamlFactory
     {
         $this->layoutTrailler = $this->loadYml('trailler.yml');
         return $this;
+    }
+
+    public function setFile($file)
+    {
+        if(!file_exists($file))
+            throw new ValidateException('File not found');
+
+        $content = explode("\r\n", file_get_contents($file));
+        $lines = array_filter($content, 'strlen');
+
+        $this->file = $lines;
     }
 
 }

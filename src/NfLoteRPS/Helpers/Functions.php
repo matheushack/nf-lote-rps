@@ -58,13 +58,64 @@ function convertFieldToType($value, $type, $amount = 1)
             $money = str_replace('.', '', $money);
             $value = str_pad($money, $amount, '0', STR_PAD_LEFT);
         break;
-        case FieldType::NUMBER: 
-        case FieldType::DATE: 
+        case FieldType::DATE:
+        case FieldType::NUMBER:
+        case FieldType::DATETIME:
             $value = str_pad($value, $amount, '0', STR_PAD_LEFT);
         break;
     }
 
     $value = substr($value, 0, $amount);
+    return $value;
+}
+
+function treatFieldToType($value, $type, $line = 0)
+{
+    try {
+        switch ($type) {
+            case FieldType::TEXT:
+            case FieldType::CHARACTER:
+            case FieldType::WHITE:
+                $value = trim($value);
+            break;
+            case FieldType::MONEY:
+            case FieldType::PERCENTAGE:
+                $money = (int) trim(ltrim($value, '0'));
+                $value = formatCurrency($money / 100);
+            break;
+            case FieldType::NUMBER:
+                $value = (int) trim(ltrim($value, '0'));
+            break;
+            case FieldType::DATE:
+                $date = trim(ltrim($value, '0'));
+                if (empty($date))
+                    return '';
+
+                $year = substr($date, 0, 4);
+                $month = substr($date, 4, 2);
+                $day = substr($date, 6, 2);
+                $value = Carbon::create($year, $month, $day)->format('Y-m-d');
+            break;
+            case FieldType::DATETIME:
+                $date = trim(ltrim($value, '0'));
+
+                if (empty($date))
+                    return '';
+
+                $year = substr($date, 0, 4);
+                $month = substr($date, 4, 2);
+                $day = substr($date, 6, 2);
+                $hour = substr($date, 8, 2);
+                $minute = substr($date, 10, 2);
+                $second = substr($date, 12, 2);
+
+                $value = Carbon::create($year, $month, $day, $hour, $minute, $second)->format('Y-m-d H:i:s');
+            break;
+        }
+    }catch (Exception $e){
+        return 'Error get value field';
+    }
+
     return $value;
 }
 
@@ -125,9 +176,15 @@ function validateFields(array $parameters, $value = '', $field = '', $amount = 1
                 
             $newValue = $value;
         break;
-        case FieldType::DATE: 
+        case FieldType::DATE:
             if(!validateDate($value, 'Ymd'))
                 throw new ValidateException("The default value of the {$field} field must be filled in the date format (YYYYMMDD)");
+
+            $newValue = $value;
+            break;
+        case FieldType::DATETIME:
+            if(!validateDate($value, 'YmdHis'))
+                throw new ValidateException("The default value of the {$field} field must be filled in the date time format (YYYYMMDDHIS)");
 
             $newValue = $value;
         break;
@@ -144,4 +201,13 @@ function validateFields(array $parameters, $value = '', $field = '', $amount = 1
     }    
 
     return convertFieldToType($newValue, $parameters['type'], $amount);
+}
+
+function formatCurrency($str){
+    $result = $str;
+
+    if (is_numeric($str))
+        $result = number_format($str, 2, ',', '.');
+
+    return $result;
 }

@@ -11,6 +11,7 @@ class FieldType
     const NUMBER = 'number';
     const ENDLINE = 'endline';
     const NOT_FILL = 'notFill';
+    const DATETIME = 'datetime';
     const CHARACTER = 'character';
     const PERCENTAGE = 'percentage';
 
@@ -24,6 +25,7 @@ class FieldType
             self::NUMBER,
             self::ENDLINE,
             self::NOT_FILL,
+            self::DATETIME,
             self::CHARACTER,
             self::PERCENTAGE,
         ];

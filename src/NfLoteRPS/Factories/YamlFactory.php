@@ -124,6 +124,10 @@ class YamlFactory
                     if(!validateDate($options['default'], 'Ymd'))
                         throw new LayoutException("The default value of the {$field} field must be filled in the date format (YYYYMMDD)");
                 break;
+                case FieldType::DATETIME:
+                    if(!validateDate($options['default'], 'YmdHis'))
+                        throw new LayoutException("The default value of the {$field} field must be filled in the date format (YYYYMMDD)");
+                    break;
                 case FieldType::CHARACTER: 
                     if(!validateCharacter($options['default']))
                         throw new LayoutException("The default {$field} field value must be a character");

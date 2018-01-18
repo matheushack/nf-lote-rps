@@ -22,7 +22,3 @@ valor_total_iss:
 valor_total_creditos:
   pos: [54,68]
   type: 'money'
-
-endline:
-  pos: [69,70]
-  type: 'endline'
