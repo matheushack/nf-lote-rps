@@ -18,6 +18,7 @@
         "mustangostang/spyc": "0.5.*",
         "illuminate/support": "~5.1.41"
     },
+    "minimum-stability": "1.0",
     "autoload": {
         "psr-4": {
             "MatheusHack\\NfLoteRPS\\": "src/NfLoteRPS"
