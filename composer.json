@@ -1,6 +1,5 @@
 {
     "name": "matheushack/nf-lote-rps",
-    "type": "library",
     "description": "Projeto para criar arquivos de remessas e processar arquivos de retorno de lote RPS da prefeitura de São Paulo",
     "keywords": ["rps", "lote", "nf", "nfs", "nfts", "são paulo", "remessa", "retorno"],
     "license": "MIT",
@@ -10,21 +9,17 @@
             "email": "matheushackdiniz@hotmail.com"
         }
     ],
+    "require": {
+        "php": ">=7.0",
+        "mustangostang/spyc": "0.5.*",
+        "illuminate/support": "5.*"
+    },
     "require-dev": {
         "larapack/dd": "^1.1"
     },
-    "require": {
-        "php": ">=7.0.4",
-        "mustangostang/spyc": "0.5.*",
-        "illuminate/support": "~5.1.41"
-    },
-    "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "MatheusHack\\NfLoteRPS\\": "src/NfLoteRPS"
+            "MatheusHack\\NfLoteRPS\\": "src/NfLoteRPS/"
         }
-    },
-    "config": {
-        "bin-dir": "bin"
     }
 }
