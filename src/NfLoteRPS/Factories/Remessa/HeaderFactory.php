@@ -57,11 +57,11 @@ class HeaderFactory
             }
 
             if($parameters['type'] == FieldType::ENDLINE){
-                $header[$field] = $this->functions->validateFields($parameters, '', $field, $amount);
+                $header[$field] = $this->functions->validateFields($parameters, '', $field, $amount, 'Header');
                 continue;
             }  
 
-            $header[$field] = $this->functions->validateFields($parameters, $newData[$field], $field, $amount);
+            $header[$field] = $this->functions->validateFields($parameters, $newData[$field], $field, $amount,'Header');
         }
 
         return $header;

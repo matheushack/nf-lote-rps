@@ -57,11 +57,11 @@ class TraillerFactory
             }
 
             if($parameters['type'] == FieldType::ENDLINE){
-                $trailler[$field] = $this->functions->validateFields($parameters, '', $field, $amount);
+                $trailler[$field] = $this->functions->validateFields($parameters, '', $field, $amount, 'Trailler');
                 continue;
             }              
 
-            $trailler[$field] = $this->functions->validateFields($parameters, $newData[$field], $field, $amount);
+            $trailler[$field] = $this->functions->validateFields($parameters, $newData[$field], $field, $amount, 'Trailler');
         }
 
         return $trailler;

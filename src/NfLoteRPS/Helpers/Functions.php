@@ -26,8 +26,15 @@ class Functions
         if (strlen($date) < 6)
             return true;
 
-        $d = Carbon::createFromFormat($format, $date);
-        return $d && $d->format($format) == $date;
+        try {
+            $d = Carbon::createFromFormat($format, $date);
+            return $d && $d->format($format) == $date;
+        }catch(\InvalidArgumentException $e){
+            return false;
+        } catch (\Exception $e) {
+            return false;
+        }
+
     }
 
     /**
@@ -212,8 +219,11 @@ class Functions
      * @return bool|string
      * @throws ValidateException
      */
-    public function validateFields(array $parameters, $value = '', $field = '', $amount = 1)
+    public function validateFields(array $parameters, $value = '', $field = '', $amount = 1, $prefix = '')
     {
+        if(!empty($prefix))
+            $prefix = "{$prefix} - ";
+
         switch ($parameters['type']) {
             default:
             case FieldType::TEXT:
@@ -221,31 +231,31 @@ class Functions
                 break;
             case FieldType::NOT_FILL:
                 if (strlen($value) > $parameters['maximum'])
-                    throw new ValidateException("Maximum allowed size exceeded for {$field} field");
+                    throw new ValidateException("{$prefix}Maximum allowed size exceeded for {$field} field");
 
                 $newValue = $this->treatText($value);
                 break;
             case FieldType::NUMBER:
                 if (!$this->validateNumeric($value))
-                    throw new ValidateException("The default value of the {$field} field must be a number");
+                    throw new ValidateException("{$prefix}The default value of the {$field} field must be a number");
 
                 $newValue = $value;
                 break;
             case FieldType::DATE:
                 if (!$this->validateDate($value, 'Ymd'))
-                    throw new ValidateException("The default value of the {$field} field must be filled in the date format (YYYYMMDD)");
+                    throw new ValidateException("{$prefix}The default value of the {$field} field must be filled in the date format (YYYYMMDD)");
 
                 $newValue = $value;
                 break;
             case FieldType::DATETIME:
                 if (!$this->validateDate($value, 'YmdHis'))
-                    throw new ValidateException("The default value of the {$field} field must be filled in the date time format (YYYYMMDDHIS)");
+                    throw new ValidateException("{$prefix}The default value of the {$field} field must be filled in the date time format (YYYYMMDDHIS)");
 
                 $newValue = $value;
                 break;
             case FieldType::CHARACTER:
                 if (!$this->validateCharacter($value))
-                    throw new ValidateException("The default {$field} field value must be a character");
+                    throw new ValidateException("{$prefix}The default {$field} field value must be a character");
 
                 $newValue = $value;
                 break;
@@ -258,7 +268,7 @@ class Functions
         $existMatrix = data_get($parameters, 'matrix', false);
 
         if ($existMatrix != false && !$this->validateValueMatrix($parameters['matrix'], $value))
-            throw new ValidateException("{$field} field value is not valid");
+            throw new ValidateException("Line {$line} - {$field} field value is not valid");
 
         return $this->convertFieldToType($newValue, $parameters['type'], $amount);
     }

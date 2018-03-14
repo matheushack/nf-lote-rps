@@ -47,7 +47,10 @@ class DetailFactory
             }
         }
 
+
         foreach($newData as $line => $register){
+            $lineDetail = $line + 1;
+
             foreach($register as $field => $value){
                 $amount = ($layout[$field]['pos'][1] - $layout[$field]['pos'][0]) + 1;
 
@@ -62,11 +65,11 @@ class DetailFactory
                 }
 
                 if($layout[$field]['type'] == FieldType::ENDLINE){
-                    $detail[$line][$field] = $this->functions->validateFields($layout[$field], '', $field, $amount);
+                    $detail[$line][$field] = $this->functions->validateFields($layout[$field], '', $field, $amount, "Detail {$lineDetail}");
                     continue;
                 }                
 
-                $detail[$line][$field] = $this->functions->validateFields($layout[$field], $value, $field, $amount);
+                $detail[$line][$field] = $this->functions->validateFields($layout[$field], $value, $field, $amount, "Detail {$lineDetail}");
             }
         }
 
