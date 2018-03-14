@@ -159,10 +159,10 @@ campo_reservado:
   type: 'white'
 
 descriminacao_servico:
-  pos: [787, 1000]
+  pos: [787, 1786]
   type: 'notFill'
-  maximum: 214
+  maximum: 1000
 
 endline:
-  pos: [1001, 1003]
+  pos: [1787, 1789]
   type: 'endline'

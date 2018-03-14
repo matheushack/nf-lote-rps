@@ -123,10 +123,10 @@ data_pagamento_nota:
   type: 'text'
 
 descriminacao_servico:
-  pos: [441,1000]
+  pos: [441,1440]
   type: 'notFill'
-  maximum: 560
+  maximum: 1000
 
 endline:
-  pos: [1001, 1003]
+  pos: [1441, 1443]
   type: 'endline'
